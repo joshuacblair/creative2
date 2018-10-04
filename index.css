@@ -1,0 +1,40 @@
+body {
+    background-color: rgb(0,0,30);
+    background-image: url(images/back2.jpg);
+}
+
+h1 {
+    color: rgb(88,99,110);
+    font-family: fantasy;
+    font-size: 60px;
+    margin: 50px;
+}
+
+h4 {
+    margin-top: 70px;
+    text-align: center;
+}
+
+.redBox {
+    backface-visibility: visible;
+    background-color: rgb(255,129,129);
+    font-family: fantasy;
+    border-radius: 25px;
+    width: 800px;
+    height: 300px;
+    box-shadow: 5px 10px #888888;
+    margin: 25px;
+    padding: 25px;
+}
+.blueBox {
+    backface-visibility: visible;
+    background-color: rgb(129,129,255);
+    font-family: fantasy;
+    border-radius: 25px;
+    width: 800px;
+    height: 300px;
+    box-shadow: 5px 10px #888888;
+    margin: 25px;
+    padding: 25px;
+    overflow: auto;
+}

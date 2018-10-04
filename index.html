@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="index.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <title>Creative 2</title>
+</head>
+
+<body>
+    <script>
+        $(document).ready(function() {
+
+            $("randomJoke").ready(function() {
+                var url = "https://icanhazdadjoke.com/";
+                $.getJSON(url, function(data) {
+                    console.log(data);
+                    var randJoke = data.joke;
+                    $("#randomJoke").html(randJoke);
+                });
+            });
+
+            $("#searchButton").click(function(e) {
+                var value = $("#jokeSearch").val();
+                console.log(value);
+                e.preventDefault();
+                var myurl = "https://icanhazdadjoke.com/search?term=";
+                myurl += value;
+                console.log(myurl);
+                $.ajax({
+                    url: myurl,
+                    dataType: "json",
+                    success: function(parsed_json) {
+                        var list = parsed_json["results"];
+                        var size = list.length;
+                        var everything = "<ul>";
+                        for (var i = 0; i < size; ++i) {
+                            everything += "<li>" + list[i].joke; + "</li>";
+                        }
+                        everything += "</ul>";
+                        console.log(list);
+                        $("#searchResults").html(everything);
+                    }
+                });
+            });
+        });
+    </script>
+    <h1>The Joke Center</h1>
+
+    <div class="redBox">
+        <h2>Random Joke</h2>
+        <h4 id="randomJoke"></h4>
+    </div>
+    <div class="blueBox">
+        <h2>Search for a Joke</h2>
+
+        <form>
+            <input type="text" id="jokeSearch" value="" />
+            <input id="searchButton" type="submit" value="Submit" />
+        </form>
+        <h4 id="searchResults"></h4>
+    </div>
+
+</body>
+
+</html>
